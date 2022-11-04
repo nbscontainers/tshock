@@ -17,7 +17,11 @@ jobs:
     steps:
       -
         name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          repository: 'Pryaxis/TShock'
+          ref: 'v5.0.0'
+          submodules: true
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -47,8 +51,8 @@ jobs:
           pull: true
           tags: |
             docker.io/${{ env.DOCKER_REPO }}:latest
-            docker.io/${{ env.DOCKER_REPO }}:4
+            docker.io/${{ env.DOCKER_REPO }}:5
             ghcr.io/${{ env.GHCR_REPO }}:latest
-            ghcr.io/${{ env.GHCR_REPO }}:4
+            ghcr.io/${{ env.GHCR_REPO }}:5
           cache-from: type=gha, scope=${{ github.workflow }}
           cache-to: type=gha, scope=${{ github.workflow }}
